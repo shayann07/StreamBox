@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Document Creator</title>
+    <link href="assets/vendors/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/styles.css" rel="stylesheet">
+</head>
+
+<style>
+    .text-red {
+    color: #dd0a1e;
+}
+pre {
+            background-color: #efefefa6;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+</style>
+
+<body>
+    <header class="header fixed-top">
+        <div class="branding docs-branding">
+            <div class="position-relative py-2">
+                <div class="docs-logo-wrapper">
+                    <div class="site-logo">
+                        <a class="navbar-brand">
+                            <span class="logo-text">StreamBox</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="page">
+
+        <div class="sidebar">
+            <ul class="nav-list">
+
+                <a href="#___Welcome-0" class="nav-link mt-1 mb-1">🏠 Welcome</a>
+
+                <a href="#Admin_Panel-1" class="nav-link mt-1 mb-1">Admin Panel</a>
+
+                <ul class="nav flex-column ps-4 subsection-list">
+                    <li class="nav-item subsection">
+                        <a href="#Database-1-0" class="nav-link">Database</a>
+                    </li>
+                </ul>
+
+                <ul class="nav flex-column ps-4 subsection-list">
+                    <li class="nav-item subsection">
+                        <a href="#Installation_Process-1-1" class="nav-link">Installation Process</a>
+                    </li>
+                </ul>
+
+                <ul class="nav flex-column ps-4 subsection-list">
+                    <li class="nav-item subsection">
+                        <a href="#SMTP_Config-1-2" class="nav-link">SMTP Config</a>
+                    </li>
+                </ul>
+
+                <ul class="nav flex-column ps-4 subsection-list">
+                    <li class="nav-item subsection">
+                        <a href="#themoviedb-1-3" class="nav-link">themoviedb</a>
+                    </li>
+                </ul>
+
+                <a href="#Android_Studio-2" class="nav-link mt-1 mb-1">Android Studio</a>
+
+                <ul class="nav flex-column ps-4 subsection-list">
+                    <li class="nav-item subsection">
+                        <a href="#Open_Project" class="nav-link">Open Project</a>
+                    </li>
+                </ul>
+
+                <ul class="nav flex-column ps-4 subsection-list">
+                    <li class="nav-item subsection">
+                        <a href="#Firebase-2-0" class="nav-link">Firebase</a>
+                    </li>
+                </ul>
+
+                <ul class="nav flex-column ps-4 subsection-list">
+                    <li class="nav-item subsection">
+                        <a href="#Push_Notification-2-1" class="nav-link">Push Notification</a>
+                    </li>
+                </ul>
+
+                <ul class="nav flex-column ps-4 subsection-list">
+                    <li class="nav-item subsection">
+                        <a href="#Application_ID-2-2" class="nav-link">Application ID</a>
+                    </li>
+                </ul>
+
+                <ul class="nav flex-column ps-4 subsection-list">
+                    <li class="nav-item subsection">
+                        <a href="#Verify_Purchase_Code-2-3" class="nav-link">Verify Purchase Code</a>
+                    </li>
+                </ul>
+
+                <ul class="nav flex-column ps-4 subsection-list">
+                    <li class="nav-item subsection">
+                        <a href="#BASE_URL___Encryption_Key-2-4" class="nav-link">BASE URL & Encryption Key</a>
+                    </li>
+                </ul>
+
+                <ul class="nav flex-column ps-4 subsection-list">
+                    <li class="nav-item subsection">
+                        <a href="#Change_Logo-2-5" class="nav-link">Change Logo</a>
+                    </li>
+                </ul>
+
+                <ul class="nav flex-column ps-4 subsection-list">
+                    <li class="nav-item subsection">
+                        <a href="#Change_Color-2-6" class="nav-link">Change Color</a>
+                    </li>
+                </ul>
+
+                <ul class="nav flex-column ps-4 subsection-list">
+                    <li class="nav-item subsection">
+                        <a href="#Change_Text-2-7" class="nav-link">Change Text</a>
+                    </li>
+                </ul>
+
+                <ul class="nav flex-column ps-4 subsection-list">
+                    <li class="nav-item subsection">
+                        <a href="#App_Themes-2-8" class="nav-link">App Themes</a>
+                    </li>
+                </ul>
+
+                <a href="#Release_Version-3-0" class="nav-link mt-1 mb-1">Google Play</a>
+
+                <ul class="nav flex-column ps-4 subsection-list">
+                    <li class="nav-item subsection">
+                        <a href="#Release_Version-3-0" class="nav-link">Release Version</a>
+                    </li>
+                </ul>
+
+                <ul class="nav flex-column ps-4 subsection-list">
+                    <li class="nav-item subsection">
+                        <a href="#Generate_Signed_Bundle___APK-3-1" class="nav-link">Generate Signed Bundle / APK</a>
+                    </li>
+                </ul>
+
+                <ul class="nav flex-column ps-4 subsection-list">
+                    <li class="nav-item subsection">
+                        <a href="#Data_Safety_Form-3-2" class="nav-link">Data Safety Form</a>
+                    </li>
+                </ul>
+
+                <ul class="nav flex-column ps-4 subsection-list">
+                    <li class="nav-item subsection">
+                        <a href="#Advertising_ID-3-3" class="nav-link">Advertising ID</a>
+                    </li>
+                </ul>
+
+                <a href="#Login_Details_Send_Intent-4" class="nav-link mt-1 mb-1">Login Details Send Intent</a>
+
+                <a href="#Create_API_Token" class="nav-link mt-1 mb-1">Custom API</a>
+                
+                <ul class="nav flex-column ps-4 subsection-list">
+                    <li class="nav-item subsection">
+                        <a href="#Create_API_Token" class="nav-link">Create API Token</a>
+                    </li>
+                </ul>
+
+                <ul class="nav flex-column ps-4 subsection-list">
+                    <li class="nav-item subsection">
+                        <a href="#Custom_API_URLs" class="nav-link">Custom API URLs</a>
+                    </li>
+                </ul>
+
+                <ul class="nav flex-column ps-4 subsection-list">
+                    <li class="nav-item subsection">
+                        <a href="#PHP_Code" class="nav-link">PHP Code</a>
+                    </li>
+                </ul>
+
+                <a href="#Troubleshooting" class="nav-link mt-1 mb-1">Troubleshooting</a>
+                
+                <a href="#App_Information_Request" class="nav-link mt-1 mb-1">App Information Request</a>
+
+                <a href="#App_Content_Permission" class="nav-link mt-1 mb-1">App Content Permission</a>
+
+                <a href="#Rating_and_Support" class="nav-link mt-1 mb-1">Rating and Support</a>
+                <a href="#FAQ" class="nav-link mt-1 mb-1">FAQ</a>
+                
+
+            </ul>
+        </div>
+        <div class="content">
+            <div class="container">
+
+                <h2 class="title-top mt-4" id="___Welcome-0"># 🏠 Welcome</h2>
+                <div class="section-content">
+                    <p>Thank you for purchasing our app. If you have any questions that are beyond the scope of this
+                        help file, please feel free to email via my user page contact form here :</p>
+                    <pre class="ql-syntax" spellcheck="false">info.nemosofts@gmail.com</pre>
+                    <pre class="ql-syntax" spellcheck="false">https://t.me/nemosofts</pre>
+                    <p>If you need help support related with app configuration or documentation, please write your
+                        support request via email with the format :</p>
+                    <ul>
+                        <li><strong>Email subject</strong> : Codecanyon username - <a
+                                href="https://help.market.envato.com/hc/en-us/articles/202822600-Where-Is-My-Purchase-Code-"
+                                target="_blank">Item purchase code</a></li>
+                        <li><strong>Email body </strong>: Describe your problem as clearly as possible.</li>
+                    </ul>
+                    <p>You can see our other item here : <a href="https://codecanyon.net/user/nemosofts/portfolio"
+                            target="_blank">https://codecanyon.net/user/nemosofts/portfolio</a></p>
+                </div>
+                <hr>
+
+                <h2 class="title-top mt-4" id="Admin_Panel-1"># Admin Panel</h2>
+                <div class="section-content">
+                    <p>Before doing installation, you need to do the following things :</p>
+                    <p><a href="https://www.php.net/" target="_blank">PHP</a> version 8.1 or newer is required, with the
+                        following PHP extensions are enabled:</p>
+                    <ul>
+                        <li><strong>PHP Version 8.1 or Higher</strong></li>
+                        <li><strong>Intl PHP Extension</strong></li>
+                        <li><strong>Ctype PHP Extension</strong></li>
+                        <li><strong>cURL PHP Extension</strong></li>
+                        <li><strong>DOM PHP Extension</strong></li>
+                        <li><strong>Fileinfo PHP Extension</strong></li>
+                        <li><strong>Filter PHP Extension</strong></li>
+                        <li><strong>Hash PHP Extension</strong></li>
+                        <li><strong>Mbstring PHP Extension</strong></li>
+                        <li><strong>OpenSSL PHP Extension</strong></li>
+                        <li><strong>PCRE PHP Extension</strong></li>
+                        <li><strong>PDO PHP Extension</strong></li>
+                        <li><strong>Session PHP Extension</strong></li>
+                        <li><strong>Tokenizer PHP Extension</strong></li>
+                        <li><strong>XML PHP Extension</strong></li>
+                        <li><strong>GD PHP Extension (or Imagick PHP Extension)</strong></li>
+                        <li><strong>PHP Zip Archive</strong></li>
+                        <li><strong>Rewrite Module (Apache or Nginx)</strong></li>
+                    </ul>
+                    <div class="alert alert-danger" role="alert">
+                        Cpanel Hosting <strong>(We didn't check the script’s performance on the VPS and VDS hosting) </strong>Dont support any free Hosting
+                    </div>
+                </div>
+                <hr>
+
+                <h3 class="title-top mt-3" id="Database-1-0"># Database</h3>
+                <div class="subsection-content">
+                    <p>You need to create a New Mysql database and allocate A new user to that database with all permissions. Dont skip any of the setps mentioned in Screenshot</p>
+                    <img src="Image/database/database_1.png">
+                    <p>Step 1 Create New Mysql database</p>
+                    <img src="Image/database/database_2.png">
+                    <p>Step 2 Create Database user and set password.</p>
+                    <img src="Image/database/database_3.png">
+                    <p>Step 3 Add created new user to your New Mysql Database which you created in Step 1 with all permissions.</p>
+                    <img src="Image/database/database_4.png">
+                    <img src="Image/database/database_5.png">
+                    <p>Step 4 Copy - Database Name Database User Name Database User Password</p>
+                </div>
+                <hr>
+
+                <h3 class="title-top mt-3" id="Installation_Process-1-1"># Installation Process</h3>
+                <div class="subsection-content">
+                    <h3>Installing Requirements</h3>
+                    <p>Run your site or sub domain http://yoursite.com</p>
+                    <p>You should now see the minimum system requirements checklist - If there are any issues with the checklist, you will need to fix that before you can proceed to the next step</p>
+                    <h3>Step 1 </h3>
+                    <img src="Image/installation/installation_1.png">
+                    <h3>Step 2 </h3>
+                    <p>Where can I find my purchase code? <a href="https://help.market.envato.com/hc/en-us/articles/202822600-Where-Is-My-Purchase-Code">Please read this.</a></p>
+                    <p>Here you have to enter your Envato username and Item Purchase code.Then click Verify.</p>
+                    <img src="Image/installation/installation_2.png">
+                    <img src="Image/installation/installation_3.png">
+                    <h3>Step 3 </h3>
+                    <p>Enter your <code>database host</code>, <code>database user</code>, <code>database password</code> and <code>database name</code>.</p>
+                    <img src="Image/installation/installation_4.png">
+                    <p>Then click Import, If everything goes well, you should see this page.</p>
+                    <p>Database import step take some time, So don't do anything when database import.</p>
+                    <img src="Image/installation/installation_5.png">
+                    <h3>Step 4 </h3>
+                    <img src="Image/installation/installation_6.png">
+                    <h3>DONE</h3>
+                    <h3>We created an admin account for you by default</h3>
+                    <p>Username: admin</p>
+                    <p>Password: admin</p>
+                </div>
+                <hr>
+
+                <h3 class="title-top mt-3" id="SMTP_Config-1-2"># SMTP Config</h3>
+                <div class="subsection-content">
+                    <p>So if you want to enable mail sending then you must configure this mail/smtp configuration in admin panel.</p>
+                    <p>You can find this settings in SMTP Settings Tab.</p>
+                    <p>Enter all SMTP Details as shown in screen shot below</p>
+                    <img src="Image/smtp/smtp_1.png">
+                    <h3>Hosting Server:</h3>
+                    <p>If you have problem with mailing with this setup than please contact your provider with those variables and ask correct info</p>
+                    <p>Gmail:</p>
+                    <p>
+                        <span class="text-red">NOTE:</span> 
+                        You have to set less secure apps access your account enable and 2 factor authentication off Less secure apps - Google Account please go through this 
+                        <a href="https://myaccount.google.com/intro/security">Link</a>
+                    </p>
+                    <p>Default config details for Gmail SMTP</p>
+                    <p>Gmail SMTP Host: smtp.gmail.com</p>
+                    <p>Gmail Email: xxxxxxx@gmail.com</p>
+                    <p>Gmail Password: ******</p>
+                    <p>SMTPSecure(TLS) - Port No.: 587</p>
+                    <p>SMTPSecure(SSL) - Port No.: 465</p>
+                    <img src="Image/smtp/smtp_2.png">
+                    <img src="Image/smtp/smtp_3.png">
+                </div>
+                <hr>
+
+                <h3 class="title-top mt-3" id="themoviedb-1-3"># themoviedb</h3>
+                <div class="subsection-content">
+                    <p><a href="https://www.themoviedb.org/settings/api">https://www.themoviedb.org/settings/api</a></p>
+                    <img src="Image/themoviedb/themoviedb_1.png">
+                    <img src="Image/themoviedb/themoviedb_2.png">
+                    <img src="Image/themoviedb/themoviedb_3.png">
+                </div>
+                <hr>
+
+                <h2 class="title-top mt-4" id="Android_Studio-2"># Android Studio</h2>
+                <div class="section-content">
+                    <h3>Getting Started</h3>
+                    <p>Download and Install Java This section very important for you if this is first time develop android, if you already develop android project you can SKIP this page.</p>
+                    <h3>Download and Install Java</h3>
+                    <p>You can download JDK from this url :<a href="https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html">https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html</a></p>
+                    <img src="Image/android-studio/android-studio_1.png">
+                
+                    <h3>Download and Install Android Studio</h3>
+                    <p>You can download latest Android Studio from this url : <a href="https://developer.android.com/studio/">https://developer.android.com/studio</a></p>
+                    <img src="Image/android-studio/android-studio_2.png">
+                    <img src="Image/android-studio/android-studio_3.png">
+                </div>
+                <hr>
+
+                <h3 class="title-top mt-3" id="Open_Project"># Open Project</h3>
+                <div class="subsection-content">
+                    <p>When your Android Studio ready you can open it and you will see display like this : </p>
+                    <img src="Image/android-studio/android-studio_5.png">
+
+                    <ol>
+                        <li>select “Open“.</li>
+                        <li>Browse location Project and press “OK” button.</li>
+                        <li>Wait for few minutes until all process import has finished.</li>
+                    </ol>
+                </div>
+                <hr>
+
+
+                <h3 class="title-top mt-3" id="Firebase-2-0"># Firebase</h3>
+                <div class="subsection-content">
+                    <p>Before you do step change the package name, you must do this step for firebase project configuration</p>
+                    <p><span class="text-red">Please note :</span> this step is mandatory to generate google-services.json file</p>
+                    <img src="Image/firebase/firebase_1.png">
+                    <p>Visit <a href="https://console.firebase.google.com/">Firebase Console</a></p>
+                    <p>Please register or log in first and then select create new project. In the dialog window enter the name of the project that will be created and the contents of the state and then click the create project to continue.</p>
+                    <img src="Image/firebase/firebase_2.png">
+                    <img src="Image/firebase/firebase_3.png">
+                    <img src="Image/firebase/firebase_4.png">
+                    <p>After successfully creating a project on Firebase then the page will be redirected to the dashboard project that has been made.</p>
+                    <img src="Image/firebase/firebase_5.png">
+                    <p>Then on the dashboard Firebase select Add Firebase to your Android app. In the next dialog window enter the name of the Android application package and SHA1 of fingerprints Certificate (optional).</p>
+                    <img src="Image/firebase/firebase_6.png">
+                    <p>Next will download the configuration file json google-services.json automatically, which will be added in the directory app in the Android project.</p>
+                    <img src="Image/firebase/firebase_7.png">
+                    <img src="Image/firebase/firebase_8.png">
+                    <p>Copy the google-services.json file that you have downloaded and put it in the Android Studio project.</p>
+                    <img src="Image/firebase/firebase_9.png">
+                </div>
+                <hr>
+
+                <h3 class="title-top mt-3" id="Push_Notification-2-1"># Push Notification</h3>
+                <div class="subsection-content">
+                    <h4>ONESIGNAL</h4>
+                    <h3>Required For Setup</h3>
+                    <ul>
+                        <li>A <a href="https://onesignal.com/">OneSignal Account</a>, if you do not already have one</li>
+                        <li>Your OneSignal App ID, available in <a href="https://documentation.onesignal.com/docs/accounts-and-keys#section-app-id">Keys & IDs</a</li>
+                        <li><a href="https://documentation.onesignal.com/docs/generate-a-google-server-api-key">A Google/Firebase Server API Key</a></li>
+                        <li>A device or emulator that has Google Play services installed and updated on it (Device will not subscribe or receive push notifications with out this).</li>
+                    </ul>
+                    <h3>Keys & IDs Setup</h3>
+                    <ul>
+                        <li>Login to your OneSignal Account and select your app</li>
+                        <li>Select SETTINGS > Keys & IDs to get your OneSignal APP ID and REST API KEY</li>
+                        <li>Login to your Admin Panel, navigate to Settings menu to Notification Tab and put your OneSignal APP ID and OneSignal REST API KEY.</li>
+                    </ul>
+                    <img src="Image/onesignal/onesignal_1.png">
+                    <img src="Image/onesignal/onesignal_2.png">
+                    <img src="Image/onesignal/onesignal_3.png">
+                </div>
+                <hr>
+
+                <h3 class="title-top mt-3" id="Application_ID-2-2"># Application ID</h3>
+                <div class="subsection-content">
+                    <h3>applicationId (Required)</h3>
+                    <p>applicationId is the main domain of your application. The applicationId is not related to the package name, although some application developers name the applicationId and the package name the same.</p>
+                    <p>Each application to be published must have a unique domain name, generally using 3 word arrangements (can be more than 3), for example: com.app.yourappname, com is identified as the domain, app as the name of the developer and yourappname as the name of the application.</p>
+                    <ol>
+                        <li>Open Gradle Scripts > build.gradle (Module: app)</li>
+                        <li>Change the application ID with your own id name</li>
+                        <li>Click Sync Now.</li>
+                        <li>Change the id as unique as possible, because application id is very important used if you want to publish the application to the google play</li>
+                    </ol>
+                    <div class="alert alert-secondary" role="alert">
+                        Important : your applicationId must be the same as the Android package name you created in the firebase console when you created google-services.json
+                    </div>
+                    <img src="Image/application-id/application-id_1.png">
+
+                    
+
+                    <h3>Invalidate caches</h3>
+                    <p>After the renaming of the package name is complete, you need to rebuild the project and invalidate the cache</p>
+                    <ol>
+                        <li>Select Build > Rebuild Project and wait until the building project finishe</li>
+                        <li>Select File > Invalidate Caches.. > Invalidate and Restart</li>
+                    </ol>
+                </div>
+                <hr>
+
+                <h3 class="title-top mt-3" id="Verify_Purchase_Code-2-3"># Verify Purchase Code</h3>
+                <div class="subsection-content">
+                    <ul>
+                        <li>Open Admin Panel > Settings > Verify Purchase</li>
+                        <li>Enter your Envato Username from which you have buyed the app</li>
+                        <li>Enter your Envato Purchase Code for this application</li>
+                        <li>Enter your android app final package name</li>
+                    </ul>
+                    <div class="alert alert-warning" role="alert">
+                        Make sure the username and purchase code is right and package name in admin panel and in application is same for app to work. Also make sure you finalize the packagename and then only enter in admin panel. Do not enter any dummy package name.
+                    </div>
+                    <img src="Image/verify/verify_1.png">
+                </div>
+                <hr>
+
+                <h3 class="title-top mt-3" id="BASE_URL___Encryption_Key-2-4"># BASE URL & Encryption Key</h3>
+                <div class="subsection-content">
+                    <h3>BASE URL</h3>
+                    <img src="Image/base_url/base_url_1.png">
+                    <ol>
+                        <li>Select Project &gt; Go to Gradle Scripts &gt; gradle.properties</li>
+                        <li>Open gradle.properties</li>
+                        <li>Now change <code>BASE_URL</code> (get your BASE_URL in your admin panel)</li>
+                    </ol>
+                    <h3>Encryption KEY</h3>
+                    <ol>
+                        <li>Select Project &gt; Go to Gradle Scripts &gt; gradle.properties</li>
+                        <li>Open gradle.properties</li>
+                        <li>Now change <code>ENC_KEY</code></li>
+                        <li>You can keep any characters for the key e.g. neme or abcdefgh or any word</li>
+                    </ol>
+                    <div class="alert alert-danger" role="alert">
+                        If you donot understand about the keys then do not change any of the keys. Just change the BASE_URL
+                    </div>
+                    <img src="Image/base_url/base_url_2.png">
+                </div>
+                <hr>
+
+                <h3 class="title-top mt-3" id="Change_Logo-2-5"># Change Logo</h3>
+                <div class="subsection-content">
+                    <p>The first step before changing the logo, it is highly recommended to delete the mipmap folder first</p>
+                    <img src="Image/change-logo/change-logo_1.png">
+                    <p>Then, after you delete the mipmap folder, the next steps are as follows:</p>
+                    <ul>
+                        <li>Open Android Studio → File → New → Image Asset</li>
+                        <li>You can choose 2 types of your icon type, that is Launcher Icon (Adaptive and Legacy) or (Legacy Only)</li>
+                        <li>Recommended to use Launcher Icon (Adaptive and Legacy)</li>
+                        <li>Browse and choose your image file icon (.png) format with square dimension and start customize your icon</li>
+                        <li>Make sure the resource name is "ic_launcher" → Next</li>
+                        <li>Make sure the selected Source Directory is "Main" → Finish</li>
+                    </ul>
+                    <img src="Image/change-logo/change-logo_2.png">
+                    <img src="Image/change-logo/change-logo_3.png">
+                    <img src="Image/change-logo/change-logo_4.png">
+
+                    <h3 class="mt-3">Android TV Banner</h3>
+                    <ul>
+                        <li>Open Android Studio → File → New → Image Asset</li>
+                    </ul>
+                    <img src="Image/change-logo/change-logo_5.png">
+                    <div class="alert alert-secondary" role="alert">
+                        Important Note :  To prevent errors when changing the application logo, make sure you have deleted the mipmap folder first, if not, you need to repeate this steps to change the app logo at least 2 times, because in some cases, when you change the app logo without deleting the mipmpa folder, there may be a problem and the logo is not saved in the mipmap folder, most likely this is a bugs in Android Studio, if this problem occurs, please repeat the steps to change the app logo again and the problem will be resolved.
+                    </div>
+                </div>
+                <hr>
+
+                <h3 class="title-top mt-3" id="Change_Color-2-6"># Change Color</h3>
+                <div class="subsection-content">
+                    <ol>
+                        <li>to change the app color, you can see on the res/values/colors.xml</li>
+                        <li>Enter your color code inside each of strings tag : </li>
+                    </ol>
+                    <img src="Image/color/color_1.png">
+                </div>
+                <hr>
+
+                <h3 class="title-top mt-3" id="Change_Text-2-7"># Change Text</h3>
+                <div class="subsection-content">
+                    <p>The text asset consists of the application name of another text component inside the app, to change it </p>
+                    <ol>
+                        <li>You can see on the res/values/strings.xml</li>
+                        <li>Change value name in each strings tag according your needs.</li>
+                    </ol>
+                    <img src="Image/color/color_2.png">
+                </div>
+                <hr>
+
+                <h3 class="title-top mt-3" id="App_Themes-2-8"># App Themes</h3>
+                <div class="subsection-content">
+                    <img src="Image/color/color_3.png">
+                </div>
+                <hr>
+
+                <h3 class="title-top mt-3" id="Release_Version-3-0"># Release Version</h3>
+                <div class="subsection-content">
+                    <p>Before release your application, make sure you have change the app versionCode and versionName in the build.gradle (Module: app). If you just release as new application, just set versionCode 1 and versionName 1.0.0 for first release. If you want to update your application, update your app version code and version to higher from previous version.</p>
+                    <img src="Image/signed/signed_1.png">
+                </div>
+                <hr>
+
+                <h3 class="title-top mt-3" id="Generate_Signed_Bundle___APK-3-1"># Generate Signed Bundle / APK</h3>
+                <div class="subsection-content">
+                    <p>If you have finished reskin the application and want to publish your application on Play Store, to sign your app in release mode in Android Studio, follow these steps :</p>
+                    <p>On the menu bar, click Build → Generate Signed Bundle / APK → APK</p>
+                    <img src="Image/signed/signed_2.png">
+                    <img src="Image/signed/signed_3.png">
+                    <p>On the Generate Signed Bundle or APK Wizard window, click Create new... to create your new keystore or If you already have a keystore, select Choose existing...</p>
+                    <img src="Image/signed/signed_4.png">
+                    <p>In the New Key Store window, provide the required information, on the Certificate form you must at least fill in First and Last Name, although other fields are optional, it is better if you fill in all fields, your key must be valid for at least 25 years, so you can Sign application updates with the same key for the life of your application.</p>
+                    <img src="Image/signed/signed_5.png">
+                    <p>On the Generate Signed Bundle or APK Wizard window, select a keystore, a private key, and enter the passwords for both. Then click Next</p>
+                    <img src="Image/signed/signed_6.png">
+                    <p>On the next window, select a destination for the signed Bundle.</p>
+                    <img src="Image/signed/signed_7.png">
+                    <p>Click Finish and the signed bundle will generated</p>
+                </div>
+                <hr>
+
+                <h3 class="title-top mt-3" id="Data_Safety_Form-3-2"># Data Safety Form</h3>
+                <div class="subsection-content">
+                    <p>Recently, many applications received warnings about data security/data security. Data security will be enforced in April 2022, so all detected apps/games related to data collection need to be updated. Referring to the data security article, We try to describe the population according to code by looking at the following points:</p>
+                    <h3 class="mt-3">Automatic filling out forms (Import CSV file)</h3>
+                    <p>Import a CSV file for faster autofill based on the tutorial:</p>
+                    <a href="https://drive.google.com/file/d/1yC71P2cWahsRSHeRNaZjm54SBZ4vg0Hn/view?usp=sharing">Download Data Safety</a>
+                    <img src="Image/signed/signed_8.png">
+
+                    <h3 class="mt-3">Fill your privacy policy link</h3>
+                    <p>Finally, prepare your privacy policy link. You can use the app's <a href="https://app-privacy-policy-generator.firebaseapp.com/">privacy policy generator</a> to create your privacy policy.</p>
+                    <img src="Image/signed/signed_9.png">
+                    <p>Until the stage of filling out the privacy policy has been completed, but for some source code there may be additional filling in accordance with the permissions used.</p>
+                </div>
+                <hr>
+
+                <h3 class="title-top mt-3" id="Advertising_ID-3-3"># Advertising ID</h3>
+                <div class="subsection-content">
+                    <p>In addition to filling the Data Safety form, the new Play Store policy is to answer questions or fill in data related to Advertising ID, this app is using ads for monetization purposes, so when you want to publish your app on Google Play, it will detect the use of Advertising ID, this is a common thing because some of the libraries like google play services ads sdk and other related libraries used do integrate it for the needs of displaying ads, also Advertising ID declaration needed for sending push notification and analytics features.</p>
+                    <img src="Image/signed/signed_10.png">
+                </div>
+                <hr>
+
+                <h2 class="title-top mt-4" id="Login_Details_Send_Intent-4"># Login Details Send Intent</h2>
+                <div class="section-content">
+                    <p>By using this you no need to give Username, Password or DNS From remote app you can redirect the users to stream box no need login while using this method</p>
+<pre>
+<code>String player_applicationId = "nsofts.streambox"; // Your App ApplicationId (StreamBox Android App)
+try {
+    Intent sendIntent = new Intent(Intent.ACTION_SEARCH);
+    sendIntent.setPackage(player_applicationId);
+    // loginType Xtream Codes or Xui.One = xtream
+    // loginType 1-Stream = stream
+    // loginType Playlist URL = playlist
+    String loginType = "xtream"; // xtream or stream or playlist
+    sendIntent.putExtra("any_name", "AnyName");
+    if (!loginType.equals("playlist")){
+        sendIntent.putExtra("user_name", "UserName");
+        sendIntent.putExtra("user_pass", "Password");
+    }
+    sendIntent.putExtra("dms_url", "http://url_here.com:port"); // DMS URL OR PLAYLIST URL
+    sendIntent.putExtra("login_type", loginType);
+    sendIntent.setType("text/plain");
+    sendIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    startActivity(sendIntent);
+} catch (Exception e) {
+    e.printStackTrace();
+    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + player_applicationId)));
+}</code>
+</pre>
+
+                <div class="alert alert-secondary" role="alert">
+                    Example From your remote app you can Place button that bring your users to stream box then it will auto enter user pass and DNS and login. After they purchase any subscription in your remote app you will show a button to click once it clicked this function will be done automatically so for users its a easy method to login app.
+                </div>
+                </div>
+                <hr>
+
+                <h3 class="title-top mt-3" id="Create_API_Token"># Create API Token</h3>
+                <div class="subsection-content">
+                    <img src="Image/token/token_1.png">
+                    <img src="Image/token/token_2.png">
+                </div>
+                <hr>
+
+                <h3 class="title-top mt-3" id="Custom_API_URLs"># Custom API URLs</h3>
+                <div class="subsection-content">
+                    <code class="mb-1" style=" padding: 5px 5px; color: #000; display: flow;">API URL   = [ your admin panel base url ]/sbox_api.php</code>
+                    <code class="mb-1" style=" padding: 5px 5px; color: #000; display: flow;">API TOKEN = /sbox_api.php?token=[ your api token key ]</code>
+                    <code class="mb-1" style=" padding: 5px 5px; color: #000; display: flow;">ACTION = API URL + API TOKEN + &action=create</code>
+
+                    <h3 class="mt-3">Create User Device ID</h3>
+                    <p>1-Stream :</p>
+                    <code class="mb-1" style=" padding: 5px 5px; color: #000; display: flow;">https:abc.com/sbox_api.php?token=xxxxxxxxx&action=create&create_type=device_id_stream&username=xxxxxx&password=xxxxxx&dns=https://abc.com&device_id=xxxxxxxxxx</code>
+                    <p>Xtream Codes or XUI :</p>
+                    <code class="mb-1" style=" padding: 5px 5px; color: #000; display: flow;">https:abc.com/sbox_api.php?token=xxxxxxxxx&action=create&create_type=device_id_xtream&username=xxxxxx&password=xxxxxx&dns=https://abc.com&device_id=xxxxxxxxxx</code>
+                
+                    <h3 class="mt-3">Create User Activation Code</h3>
+                    <p>1-Stream :</p>
+                    <code class="mb-1" style=" padding: 5px 5px; color: #000; display: flow;">https:abc.com/sbox_api.php?token=xxxxxxxxx&action=create&create_type=activation_stream&username=xxxxxx&password=xxxxxx&dns=https://abc.com</code>
+                    <p>Xtream Codes or XUI :</p>
+                    <code class="mb-1" style=" padding: 5px 5px; color: #000; display: flow;">https:abc.com/sbox_api.php?token=xxxxxxxxx&action=create&create_type=activation_xtream&username=xxxxxx&password=xxxxxx&dns=https://abc.com</code>
+                
+                </div>
+                <hr>
+
+                <h3 class="title-top mt-3" id="PHP_Code"># PHP Code</h3>
+                <div class="subsection-content">
+<pre>
+<code>function getAPIRequest($dataUrl){
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_POST, 1);
+    curl_setopt($curl, CURLOPT_URL, $dataUrl);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 30); 
+    curl_setopt($curl, CURLOPT_TIMEOUT, 30);
+    $result = curl_exec($curl);
+    curl_close($curl);
+    return $result;
+}
+
+function createDeviceIDStream(){
+    $data = 'https:abc.com/sbox_api.php?token=xxxxxxxxx&action=create&create_type=device_id_stream&username=xxxxxx&password=xxxxxx&dns=https://abc.com&device_id=xxxxxxxxxx';
+    $get_data = getAPIRequest($data);
+    $response = json_decode($get_data, true);
+    return $response;
+}
+
+function createDeviceIDXtream(){
+    $data = 'https:abc.com/sbox_api.php?token=xxxxxxxxx&action=create&create_type=device_id_xtream&username=xxxxxx&password=xxxxxx&dns=https://abc.com&device_id=xxxxxxxxxx';
+    $get_data = getAPIRequest($data);
+    $response = json_decode($get_data, true);
+    return $response;
+}
+
+function createActivationCodeStream(){
+    $data = 'https:abc.com/sbox_api.php?token=xxxxxxxxx&action=create&create_type=activation_stream&username=xxxxxx&password=xxxxxx&dns=https://abc.com';
+    $get_data = getAPIRequest($data);
+    $response = json_decode($get_data, true);
+    return $response;
+}
+
+function createActivationCodeXtream(){
+    $data = 'https:abc.com/sbox_api.php?token=xxxxxxxxx&action=create&create_type=activation_xtream&username=xxxxxx&password=xxxxxx&dns=https://abc.com';
+    $get_data = getAPIRequest($data);
+    $response = json_decode($get_data, true);
+    return $response;
+}</code>
+</pre>
+                </div>
+                <hr>
+
+                <h3 class="title-top mt-3" id="Troubleshooting"># Troubleshooting</h3>
+                <div class="subsection-content">
+                    <h3 class="mt-3">Cannot resolve symbol 'AGP'</h3>
+                    <img src="Image/troubleshooting/troubleshooting_1.png">
+                    <p>The project is using an incompatible version (AGP X.X.X) of the Android Gradle plugin. Latest supported version is AGP X.X.X</p>
+                    <p>You need to update your android studio. this issue will fixed.</p>
+                    <img src="Image/troubleshooting/troubleshooting_2.png">
+
+                    <h3 class="mt-3">Cannot resolve symbol 'BuildConfig'</h3>
+                    <p>It's not a real error, it's just a false positive, it occurs when the project is opened for the first time or the project is not yet in Build, this problem will be automatically resolved after the project is built.</p>
+                    <img src="Image/troubleshooting/troubleshooting_3.png">
+
+                    <h3 class="mt-3">Cannot resolve symbol 'R'</h3>
+                    <p>This issues happens after you've Refactor > Rename your package folder with a new name, actually it's also not an error, we could say this is one of the bugs in Android Studio which until now have not been or are not fixed, as in the previous case, it's not a real error, it's just a false positive and will automatically resolved after you Invalidate Caches in your Android Studio project, you can do this by selecting File > Invalidate Caches... > Invalidate and Restart</p>
+                    <img src="Image/troubleshooting/troubleshooting_4.png">
+                    <img src="Image/troubleshooting/troubleshooting_5.png">
+                    <img src="Image/troubleshooting/troubleshooting_6.png">
+                </div>
+                <hr>
+
+                <h3 class="title-top mt-3" id="App_Information_Request"># App Information Request</h3>
+                <div class="subsection-content">
+                    <p>Must include this in Playtsore description.</p>
+                    <p>This is only an hls video player that works with the M3u playlist and extream api. In this app we dont host any content.</p>
+                    
+                    <p>If you get this email from playconsole, please follow below steps</p>
+                    <img src="Image/app_Information_request/app_Information_request.png">
+
+                    <a class="mt-3" href="https://support.google.com/googleplay/android-developer/contact/play_information_request">https://support.google.com/googleplay/android-developer/contact/play_information_request</a>
+                    <img class="mt-3" src="Image/app_Information_request/your_app_core.png">
+                    <img src="Image/app_Information_request/your_app_core_2.png">
+
+                    <a href="https://github.com/square/picasso">https://github.com/square/picasso</a>
+                    </br>
+                    <a href="https://github.com/square/okhtt">https://github.com/square/okhtt</a>
+                    </br>
+                    <a href="phttps://onesignal.com">phttps://onesignal.com</a>
+                </div>
+                <hr>
+
+                <h3 class="title-top mt-3" id="App_Content_Permission"># App Content Permission</h3>
+                <div class="subsection-content">
+                    <h3>Foreground Permission Data Sync</h3>
+
+                    <p>Video record will be Like this Record in another phone and show your current app running phone</p>
+                    <p>Download a movie show notification tab that shoing download status</p>
+                    <img src="Image/permissions/permissions_1.png">
+                    
+                    <a class="mt-3" href="https://download.envatonemosofts.com/sample/streambox_sata_sync.mp4">sample video</a>
+
+                    <h3 class="mt-3">Photo and video permissions</h3>
+                    <p>android.permission.READ_MEDIA_VIDEO permission</p>
+                    <img src="Image/permissions/permissions_2.png">
+                    <div class="alert alert-warning" role="alert">
+                        In our app, we use video gallery, which give acces to videos in the device, and they able to watch the videos inside our app with the player.
+                    </div>
+                </div>
+                <hr>
+
+                <h3 class="title-top mt-3" id="Rating_and_Support"># Rating and Support</h3>
+                <div class="subsection-content">
+                    <p>If you like our app, we will highly appreciate if you can provide us a rating of 5. You can rate us from your CodeCanyon Menu →<a href="https://codecanyon.net/downloads">Download page</a>.</p>
+                    <p>Once again, thank you so much for purchasing this app. As I said at the beginning, I'd be glad to help you if you have any questions relating to this app. No guarantees, but I'll do my best to assist. If you have a more general question relating to the apps on CodeCanyon, please feel free to email via our user page contact form or email support on below :</p>
+                    <pre class="ql-syntax" spellcheck="false">https://t.me/nemosofts</pre>
+                </div>
+                <hr>
+
+                <h3 class="title-top mt-3" id="FAQ"># FAQ</h3>
+                <div class="subsection-content">
+                    <h3 class="mt-3">1. Why a complete reinstallation project is required for each update for Android Studio project?</h3>
+                    <p>Once you've reskin the project especially after package name / applicationId has been changed, the project structure will be changed, just replacing the updated files without having knowledge in Android Programming in advance will cause the project error dan failed to build the project, because of that, every we release the new update, you need to do reskin the application from begin, please note, update version is optional, update your application if you only find the issue from previous version or want to use all features from new version.</p>
+                </div>
+                <hr>
+
+                <div class="footer">
+                    <p>Generated Advanced Document Creator by nemosofts</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- Block connections to nemosofts.com for license verification -->
+    <!-- Using empty trust-anchors effectively blocks all connections -->
+    <!-- domain-config for nemosofts.com removed to allow user access -->
+    
+    <!-- Allow all other connections -->
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system"/>
+            <certificates src="user"/>
+        </trust-anchors>
+    </base-config>
+</network-security-config>

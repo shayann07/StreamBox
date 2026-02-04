@@ -1,0 +1,236 @@
+
+.header {
+    background: #f8f9fa;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid #ddd;
+}
+
+.docs-branding {
+    padding-left: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.site-logo {
+    display: flex;
+    align-items: center;
+}
+
+.site-logo img {
+    height: 40px;
+    width: auto;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.text-alt {
+    color: #0355b3;
+}
+
+.header small {
+    font-size: 0.8rem;
+    color: #777;
+    display: block;
+}
+
+.fixed-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 0;
+}
+
+.page {
+    position: fixed;
+    width: 100%;
+    height: 92vh;
+    display: flex;
+}
+
+body {
+    padding-top: 70px; /* Prevents content from hiding behind the fixed header */
+}
+
+.sidebar {
+    background-color: #f8f9fa;
+    max-width: 400px;
+    min-width: 300px;
+    padding: 20px;
+    height: 100%;
+    overflow-y: auto;
+    border-right: 1px solid #ddd;
+}
+
+.content {
+    flex-grow: 1;
+    /* padding: 20px 10%; */
+    overflow-y: auto;
+}
+
+.section-content,
+.subsection-content {
+    margin-top: 10px;
+    padding-left: 20px
+}
+
+p br {
+    display: none;
+}
+
+p {
+    color: #5d6778;
+    margin-top: 0;
+    margin-bottom: 1.2rem;
+    font-size: 1.1rem
+}
+
+p:last-child {
+    margin-bottom: 0
+}
+
+img {
+    height: auto !important;
+    max-width: 100%;
+    border-radius: 0px;
+    margin-bottom: 10px;
+}
+
+a,
+a:focus {
+    text-decoration: none;
+    -webkit-transition: .2s;
+    transition: .2s
+}
+
+a:active,
+a:hover {
+    color: #0355b3;
+    -webkit-transition: .2s;
+    transition: .2s
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #252930;
+    line-height: 1.5;
+    font-family: Roboto, sans-serif
+}
+
+h1 {
+    font-size: 3rem
+}
+
+h2 {
+    font-size: 2.2rem
+}
+
+.table,
+blockquote,
+dl,
+ol,
+pre,
+ul {
+    margin-bottom: 1.8rem
+}
+
+hr {
+    border-top: 1px solid #ccc !important;
+    margin: 25px 0
+}
+
+pre.ql-syntax {
+    width: fit-content;
+    padding: .5rem;
+    background-color: #020202;
+    color: white;
+    border-radius: .375rem;
+    border: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+code {
+    border: 1px solid #e5e7eb;
+    border-radius: .25rem;
+    padding: 2px 4px;
+    background: #efefef;
+    font-size: .875em;
+    color: #7c00ff;
+    word-wrap: break-word;
+    font-weight: bold;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 12px;
+    color: #666;
+    padding: 15px;
+}
+
+.nav-link {
+    color: #333;
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    line-height: 25px;
+    font-weight: 600;
+    font-size: 1rem
+}
+
+.nav-link:hover {
+    background: #e5e5e5;
+    border-radius: 5px
+}
+
+a.nav-link {
+    color: #333
+}
+
+a.nav-link:hover {
+    color: #0355b3;
+    -webkit-transition: .2s;
+    transition: .2s
+}
+
+li.nav-item.subsection {
+    border-left: 2px solid #33333383
+}
+
+li.nav-item.subsection a.nav-link {
+    font-weight: 500;
+    color: #676767
+}
+
+li.nav-item.subsection a.nav-link:hover {
+    color: #0355b3;
+    -webkit-transition: .2s;
+    transition: .2s
+}
+
+ul.nav-list {
+    padding: 0
+}
+
+.title-top {
+    color: #464e5b;
+    border-left: 4px solid #000000 !important;
+    padding-left: 10px;
+    font-weight: bold;
+}
+
+.container {
+    max-width: 1000px !important;
+}              

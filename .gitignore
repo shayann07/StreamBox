@@ -1,0 +1,155 @@
+# =============================================================================
+# StreamFlux Project - Comprehensive .gitignore
+# =============================================================================
+
+# =============================================================================
+# ANDROID / GRADLE
+# =============================================================================
+
+# Gradle files
+.gradle/
+build/
+*/build/
+**/build/
+
+# Local configuration
+local.properties
+
+# IntelliJ IDEA / Android Studio
+*.iml
+.idea/
+!.idea/codeStyles/
+!.idea/runConfigurations/
+
+# Captures (Android screenshots, layouts)
+/captures/
+
+# Native build
+.externalNativeBuild/
+.cxx/
+
+# Google Services (contains API keys - optional, remove if you want to track)
+# google-services.json
+
+# Android Profiling
+*.hprof
+
+# =============================================================================
+# BUILT APK/AAB FILES
+# =============================================================================
+*.apk
+*.aab
+*.ap_
+*.dex
+
+# =============================================================================
+# macOS
+# =============================================================================
+.DS_Store
+.AppleDouble
+.LSOverride
+__MACOSX/
+
+# =============================================================================
+# WINDOWS
+# =============================================================================
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# =============================================================================
+# LINUX
+# =============================================================================
+*~
+.nfs*
+
+# =============================================================================
+# JAVA / JVM
+# =============================================================================
+*.class
+*.jar
+*.war
+*.ear
+hs_err_pid*.log
+replay_pid*.log
+
+# =============================================================================
+# LOGS & TEMP FILES
+# =============================================================================
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~
+
+# Debug logs (project-specific)
+movie_playback.txt
+
+# =============================================================================
+# UPLOADS / GENERATED CONTENT
+# =============================================================================
+/uploads/
+
+# =============================================================================
+# PHP / CODEIGNITER 4 (Admin Panel)
+# =============================================================================
+
+# Vendor dependencies (install via composer)
+adminpanelcode/vendor/
+
+# Writable directory (logs, cache, sessions, uploads)
+adminpanelcode/writable/logs/*
+!adminpanelcode/writable/logs/.gitkeep
+adminpanelcode/writable/cache/*
+!adminpanelcode/writable/cache/.gitkeep
+adminpanelcode/writable/session/*
+!adminpanelcode/writable/session/.gitkeep
+adminpanelcode/writable/uploads/*
+!adminpanelcode/writable/uploads/.gitkeep
+adminpanelcode/writable/debugbar/*
+
+# Environment file (contains DB credentials - IMPORTANT!)
+# Uncomment if you want to exclude .env (recommended for production)
+# adminpanelcode/.env
+
+# PHP Unit
+adminpanelcode/.phpunit.result.cache
+
+# Composer
+adminpanelcode/composer.lock
+
+# =============================================================================
+# TEMP / EXTRACTED FOLDERS
+# =============================================================================
+aar_temp/
+
+# =============================================================================
+# IDE SPECIFIC
+# =============================================================================
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# =============================================================================
+# OPTIONAL: Uncomment if you want to exclude these
+# =============================================================================
+
+# Signing keys (RECOMMENDED to exclude for public repos!)
+# Key/
+# *.jks
+# *.keystore
+
+# Database files
+# db/
+
+# Documentation (if you want to keep repo lightweight)
+# documentation/

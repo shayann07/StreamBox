@@ -1,0 +1,114 @@
+plugins {
+    id 'com.android.library'
+}
+
+android {
+    namespace 'androidx.nemosofts'
+    compileSdk 36
+
+    defaultConfig {
+        minSdk 23
+        targetSdk 36
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    
+    buildFeatures {
+        buildConfig = false
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'com.squareup.picasso:picasso:2.8'
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    
+    // Include and export the stripped classes from the original library
+    // api files('libs/library-clean.jar')
+}
+
+
+task stripIntrusiveClasses {
+    doLast {
+        def jarFile = file('libs/library-stripped.jar')
+        def cleanJar = file('libs/library-clean.jar')
+        
+        if (!jarFile.exists()) {
+            println "Source JAR not found: ${jarFile.name}"
+            return
+        }
+        
+        println "Stripping into new JAR: ${cleanJar.name}"
+        
+        def jar = new java.util.jar.JarFile(jarFile)
+        def fos = new java.io.FileOutputStream(cleanJar)
+        def zos = new java.util.zip.ZipOutputStream(fos)
+        
+        jar.entries().each { entry ->
+            // Define classes to REMOVE (will be shadowed by our implementations)
+            if (entry.name.contains("DeviceUtils.class") || 
+                entry.name.contains("ProgressDialog.class") ||
+                entry.name.contains("ThemeEngine.class") ||
+                entry.name.contains("AppCompatActivity.class") ||
+                entry.name.contains("Application.class") ||
+                entry.name.contains("TaskExecutor.class") ||
+                entry.name.contains("EncrypterUtils.class") ||
+                entry.name.contains("NetworkUtils.class") ||
+                // NEW: Remove these intrusive classes too!
+                entry.name.contains("Nemosofts.class") ||
+                entry.name.contains("LauncherTask.class") ||
+                entry.name.contains("LauncherListener.class") ||
+                entry.name.contains("Toasty.class") ||
+                entry.name.contains("Toasty\$") ||  // Inner classes
+                entry.name.contains("BuildConfig.class")
+               ) {
+                println "REMOVING: ${entry.name}"
+                return // Skip writing this entry
+            }
+            
+            // Add entry to new JAR
+            zos.putNextEntry(new java.util.zip.ZipEntry(entry.name))
+            def is = jar.getInputStream(entry)
+            zos.write(is.readAllBytes())
+            is.close()
+            zos.closeEntry()
+        }
+        
+        zos.close()
+        fos.close()
+        jar.close()
+        
+        println "Stripping Complete. Created ${cleanJar.name}"
+    }
+}
+
+task verifyJarContents {
+    doLast {
+        def jarFile = file('libs/library-clean.jar')
+        println "Listing ALL classes in: ${jarFile.name}"
+        if (jarFile.exists()) {
+            new java.util.jar.JarFile(jarFile).entries().each { entry ->
+                if (entry.name.endsWith(".class")) {
+                    println entry.name
+                }
+            }
+        } else {
+            println "JAR not found!"
+        }
+    }
+}
+
+// FORCE execution of stripping before compilation
+preBuild.dependsOn stripIntrusiveClasses

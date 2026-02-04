@@ -1,0 +1,92 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:padding="0dp"
+    android:visibility="gone">
+
+    <LinearLayout
+        android:padding="0dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:contentDescription="@string/default_todo" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text=""
+                tools:ignore="HardcodedText" />
+
+            <ImageView
+                android:id="@+id/iv_close"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:contentDescription="@string/default_todo" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="0dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_error"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:contentDescription="@string/default_todo" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:text=""
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="0dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:text=""
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:text=""
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text=""
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+
+</RelativeLayout>
