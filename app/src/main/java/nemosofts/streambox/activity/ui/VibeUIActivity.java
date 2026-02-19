@@ -70,7 +70,12 @@ public class VibeUIActivity extends AppCompatActivity {
 
         // requestPermission will show the native Android notification permission prompt.
         // NOTE: It's recommended to use a OneSignal In-App Message to prompt instead.
-
+        try {
+            OneSignal.initWithContext(this, getString(R.string.onesignal_app_id));
+            OneSignal.getNotifications().requestPermission(false, Continue.none());
+        } catch (Exception e) {
+            ApplicationUtil.log("VibeUIActivity", "OneSignal not initialized, skipping notification permission request", e);
+        }
 
         setupBackPressHandler();
         if (DeviceUtils.isTvBox(this)){

@@ -456,7 +456,7 @@ public class DownloadService extends Service {
             Request.Builder builder = new Request.Builder()
                     .url(context.url)
                     .addHeader("Accept-Encoding", "identity")
-                    .addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+                    .addHeader("User-Agent", "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36")
                     .get()
                     .tag(CANCEL_TAG);
 
@@ -491,7 +491,17 @@ public class DownloadService extends Service {
 
         // Log Content-Length for debugging
         String contentLength = response.header("Content-Length");
-        ApplicationUtil.log(TAG, "Download Response: " + response.code() + " | Content-Length: " + contentLength);
+        String contentType = response.header("Content-Type");
+        ApplicationUtil.log(TAG, "Download Response: " + response.code() + " | Content-Type: " + contentType + " | Content-Length: " + contentLength);
+
+        // Reject HTML/text error pages that some servers return with 200 OK
+        if (contentType != null && (contentType.startsWith("text/html") || contentType.startsWith("text/plain"))) {
+            Log.w(TAG, "Server returned non-video content (" + contentType + ") for " + context.streamId + ". Likely an error page.");
+            closeQuietly(response);
+            deleteActiveFile(context);
+            finalizeContext(context);
+            return;
+        }
 
         ResponseBody rawBody = response.body();
         if (rawBody == null) {
@@ -535,6 +545,16 @@ public class DownloadService extends Service {
         try {
             BufferedSource source = progressBody.source();
             enc.encrypt(context.filePath + "/" + context.fileName, source, context.video);
+
+            // Post-download validation: reject suspiciously small files (likely error pages)
+            String containerExt = ApplicationUtil.containerExtension(context.video.getContainerExtension());
+            File savedFile = new File(context.filePath, context.fileName + containerExt);
+            if (savedFile.exists() && savedFile.length() < 100_000) { // < 100KB is not a real video
+                Log.w(TAG, "Downloaded file too small (" + savedFile.length() + " bytes), likely corrupt: " + context.streamId);
+                savedFile.delete();
+                finalizeContext(context);
+                return;
+            }
         } catch (Exception e) {
             if (call != null && call.isCanceled()) {
                 ApplicationUtil.log(TAG, "Download canceled by user: " + context.streamId);

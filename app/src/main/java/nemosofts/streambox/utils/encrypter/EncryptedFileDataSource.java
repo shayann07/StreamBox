@@ -27,6 +27,8 @@ import javax.crypto.spec.SecretKeySpec;
 
 import nemosofts.streambox.utils.ApplicationUtil;
 
+
+
 @UnstableApi
 public final class EncryptedFileDataSource implements DataSource {
 
@@ -82,6 +84,7 @@ public final class EncryptedFileDataSource implements DataSource {
 
     private void setupInputStream() throws FileNotFoundException {
         File encryptedFile = new File(mUri.getPath());
+
         FileInputStream fileInputStream = new FileInputStream(encryptedFile);
         mInputStream = new StreamingCipherInputStream(fileInputStream, mCipher, mSecretKeySpec, mIvParameterSpec);
     }
@@ -94,8 +97,14 @@ public final class EncryptedFileDataSource implements DataSource {
         if (dataSpec.length != C.LENGTH_UNSET) {
             mBytesRemaining = dataSpec.length;
         } else {
-            mBytesRemaining = mInputStream.available();
-            if (mBytesRemaining == Integer.MAX_VALUE) {
+            // CipherInputStream.available() returns 0 for a newly created stream
+            // (it only reports bytes buffered internally, NOT total remaining).
+            // Use the actual encrypted file size instead, or LENGTH_UNSET to stream until EOF.
+            File encryptedFile = new File(mUri.getPath());
+            long fileSize = encryptedFile.length();
+            if (fileSize > 0) {
+                mBytesRemaining = fileSize - dataSpec.position;
+            } else {
                 mBytesRemaining = C.LENGTH_UNSET;
             }
         }
@@ -117,6 +126,7 @@ public final class EncryptedFileDataSource implements DataSource {
         } catch (IOException e) {
             throw new EncryptedFileDataSourceException(e);
         }
+
         // if we get a -1 that means we failed to read - we're either going to EOF error or broadcast EOF
         if (bytesRead == -1) {
             if (mBytesRemaining != C.LENGTH_UNSET) {
@@ -200,7 +210,6 @@ public final class EncryptedFileDataSource implements DataSource {
 
         @Override
         public int read(byte[] b, int off, int len) throws IOException {
-            ApplicationUtil.log("CustomInputStream", "read called with len: " + len);
             return super.read(b, off, len);
         }
 

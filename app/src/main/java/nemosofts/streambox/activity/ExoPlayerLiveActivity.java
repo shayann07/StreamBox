@@ -1367,8 +1367,8 @@ public class ExoPlayerLiveActivity extends AppCompatActivity {
     }
 
     public HttpDataSource.Factory buildHttpDataSourceFactory(DefaultBandwidthMeter bandwidthMeter) {
-        // Use the same user agent as ExoPlayerActivity for consistency
-        String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
+        // Use a standard Mobile Chrome User-Agent to avoid blocking by strict IPTV servers
+        String userAgent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36";
         
         // Use OkHttpDataSource with the streaming client that adds IPTV headers (Referer, Origin, etc.)
         String serverUrl = spHelper.getServerURL();

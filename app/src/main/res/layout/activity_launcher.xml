@@ -8,6 +8,22 @@
     android:background="@drawable/bg_dark"
     android:id="@+id/theme_bg">
 
+    <!-- Version tag - top right -->
+    <TextView
+        android:id="@+id/tv_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:text="v 1"
+        android:alpha="0.4"
+        android:textColor="?nsWhite"
+        android:textSize="@dimen/_9ssp"
+        tools:ignore="HardcodedText" />
+
+    <!-- Centered content block -->
     <LinearLayout
         android:id="@+id/ll_title"
         android:layout_centerInParent="true"
@@ -16,6 +32,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
+        <!-- App Logo with Glow Ring -->
+        <FrameLayout
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/_12sdp">
+
+            <!-- Outer glow ring -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_splash_logo_ring" />
+
+            <!-- Logo image -->
+            <ImageView
+                android:layout_width="@dimen/_48sdp"
+                android:layout_height="@dimen/_48sdp"
+                android:layout_gravity="center"
+                android:src="@drawable/logo"
+                android:contentDescription="@string/app_name" />
+        </FrameLayout>
+
+        <!-- App Name -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,62 +63,73 @@
             android:textColor="@color/white"
             android:textSize="@dimen/_28ssp"
             android:textStyle="bold"
-            android:layout_marginBottom="@dimen/_2sdp"/>
+            android:letterSpacing="0.05"
+            android:layout_marginBottom="@dimen/_8sdp"/>
 
+        <!-- Accent divider line -->
+        <View
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_splash_accent_line"
+            android:layout_marginBottom="@dimen/_8sdp" />
+
+        <!-- Security badge -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:alpha="0.7"
+            android:alpha="0.6"
             android:orientation="horizontal"
             android:gravity="center"
             tools:ignore="UseCompoundDrawables">
 
             <ImageView
                 android:src="@drawable/ic_keyhole"
-                android:layout_width="@dimen/_14sdp"
-                android:layout_height="@dimen/_14sdp"
+                android:layout_width="@dimen/_12sdp"
+                android:layout_height="@dimen/_12sdp"
                 app:tint="?nsWhite"
                 android:contentDescription="@string/todo" />
 
             <TextView
-                android:textSize="@dimen/_11ssp"
+                android:textSize="@dimen/_10ssp"
                 android:layout_marginStart="@dimen/_5sdp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/encrypted_data_security"
+                android:letterSpacing="0.03"
                 android:textColor="?nsWhite"/>
         </LinearLayout>
 
     </LinearLayout>
 
-    <RelativeLayout
-        android:layout_above="@+id/tv_version"
-        android:layout_below="@id/ll_title"
+    <!-- Bottom section: loader + copyright -->
+    <LinearLayout
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <ProgressBar
             android:id="@+id/pb_splash"
-            android:layout_width="@dimen/_33sdp"
-            android:layout_height="@dimen/_33sdp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
+            android:layout_width="@dimen/_22sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:layout_gravity="center"
             android:indeterminate="true"
-            android:layout_marginTop="@dimen/_15sdp"/>
+            android:layout_marginBottom="@dimen/_10sdp"/>
 
-    </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="© 2026 StreamFlux"
+            android:alpha="0.3"
+            android:textColor="?nsWhite"
+            android:textSize="@dimen/_8ssp"
+            android:letterSpacing="0.05"
+            tools:ignore="HardcodedText" />
 
-    <TextView
-        android:id="@+id/tv_version"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/_20sdp"
-        android:text="Version 1"
-        android:textColor="?nsTitleSub"
-        android:textSize="@dimen/_11ssp"
-        tools:ignore="HardcodedText" />
+    </LinearLayout>
 
 </RelativeLayout>

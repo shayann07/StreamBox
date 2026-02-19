@@ -27,6 +27,7 @@ import nemosofts.streambox.utils.BlockingContextWrapper;
 import nemosofts.streambox.utils.DialogBlockerCallback;
 import nemosofts.streambox.utils.helper.DBHelper;
 import nemosofts.streambox.utils.helper.Helper;
+import nemosofts.streambox.utils.OneSignalNotificationHandler;
 
 public class MyApplication extends Application {
 
@@ -115,6 +116,9 @@ public class MyApplication extends Application {
 
         // OneSignal Initialization
         OneSignal.initWithContext(this, getString(R.string.onesignal_app_id));
+
+        // Create high-importance notification channel for heads-up popup display
+        OneSignalNotificationHandler.createNotificationChannel(this);
 
         initPicasso();
 

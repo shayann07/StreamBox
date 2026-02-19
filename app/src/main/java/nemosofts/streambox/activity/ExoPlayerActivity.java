@@ -1369,7 +1369,8 @@ public class ExoPlayerActivity extends AppCompatActivity {
     }
 
     public HttpDataSource.Factory buildHttpDataSourceFactory(DefaultBandwidthMeter bandwidthMeter) {
-        String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
+        // Use Mobile Chrome User-Agent to avoid server-side blocking
+        String userAgent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36";
         // Use StreamingClientInstance to include Referer/Origin headers from server URL
         // This is crucial for fixing Connection Reset errors on some IPTV providers
         return new androidx.media3.datasource.okhttp.OkHttpDataSource.Factory(

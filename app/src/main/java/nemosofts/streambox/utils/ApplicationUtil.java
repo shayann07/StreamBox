@@ -255,8 +255,8 @@ public class ApplicationUtil {
                     // Add Referer and Origin if we have a valid server URL
                     if (!finalBaseUrl.isEmpty()) {
                         requestBuilder.header("Referer", finalBaseUrl + "/");
-                        requestBuilder.header("Origin", finalBaseUrl);
-                        log(TAG, "IPTV Headers added - Referer: " + finalBaseUrl + "/ | Origin: " + finalBaseUrl);
+                        // requestBuilder.header("Origin", finalBaseUrl); // Removed to prevent 403 on cross-domain redirects
+                        log(TAG, "IPTV Headers added - Referer: " + finalBaseUrl + "/");
                     } else {
                         log(TAG, "WARNING: No Referer/Origin headers added - baseUrl is empty!");
                     }

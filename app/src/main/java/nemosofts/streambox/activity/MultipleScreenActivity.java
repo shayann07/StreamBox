@@ -395,12 +395,14 @@ public class MultipleScreenActivity extends AppCompatActivity {
                 if (playbackOne < MAX_RETRIES){
                     playbackOne = playbackOne + 1;
                     Toast.makeText(MultipleScreenActivity.this,TAG_PLAYBACK_ERROR + playbackOne + "/5 ", Toast.LENGTH_SHORT).show();
+                    // Progressive backoff to avoid 509 bandwidth throttling
+                    long retryDelay = 1500L * playbackOne;
                     new Handler(Looper.getMainLooper()).postDelayed(() -> {
                         if (isFinishing()){
                             return;
                         }
                         setPlayerOne(urlOne);
-                    }, 600);
+                    }, retryDelay);
                     return;
                 }
 
@@ -489,12 +491,14 @@ public class MultipleScreenActivity extends AppCompatActivity {
                 if (playbackTwo < MAX_RETRIES){
                     playbackTwo = playbackTwo + 1;
                     Toast.makeText(MultipleScreenActivity.this,TAG_PLAYBACK_ERROR + playbackTwo + "/5 ", Toast.LENGTH_SHORT).show();
+                    // Progressive backoff to avoid 509 bandwidth throttling
+                    long retryDelay = 1500L * playbackTwo;
                     new Handler(Looper.getMainLooper()).postDelayed(() -> {
                         if (isFinishing()){
                             return;
                         }
                         setPlayerTow(urlTwo);
-                    }, 600);
+                    }, retryDelay);
                     return;
                 }
 
@@ -574,12 +578,14 @@ public class MultipleScreenActivity extends AppCompatActivity {
                 if (playbackThree < MAX_RETRIES){
                     playbackThree = playbackThree + 1;
                     Toast.makeText(MultipleScreenActivity.this,TAG_PLAYBACK_ERROR + playbackThree + "/5 ", Toast.LENGTH_SHORT).show();
+                    // Progressive backoff to avoid 509 bandwidth throttling
+                    long retryDelay = 1500L * playbackThree;
                     new Handler(Looper.getMainLooper()).postDelayed(() -> {
                         if (isFinishing()){
                             return;
                         }
                         setPlayerThree(urlThree);
-                    }, 600);
+                    }, retryDelay);
                     return;
                 }
 
@@ -659,12 +665,14 @@ public class MultipleScreenActivity extends AppCompatActivity {
                 if (playbackFour < MAX_RETRIES){
                     playbackFour = playbackFour + 1;
                     Toast.makeText(MultipleScreenActivity.this,TAG_PLAYBACK_ERROR + playbackFour + "/5 ", Toast.LENGTH_SHORT).show();
+                    // Progressive backoff to avoid 509 bandwidth throttling
+                    long retryDelay = 1500L * playbackFour;
                     new Handler(Looper.getMainLooper()).postDelayed(() -> {
                         if (isFinishing()){
                             return;
                         }
                         setPlayerFour(urlFour);
-                    }, 600);
+                    }, retryDelay);
                     return;
                 }
 
@@ -751,8 +759,8 @@ public class MultipleScreenActivity extends AppCompatActivity {
     }
 
     public HttpDataSource.Factory buildHttpDataSourceFactory(DefaultBandwidthMeter bandwidthMeter) {
-        // Use OkHttpDataSource with the streaming client that adds IPTV headers (Referer, Origin, etc.)
-        String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
+        // Use Mobile Chrome User-Agent to avoid server-side blocking
+        String userAgent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36";
         String serverUrl = spHelper.getServerURL();
         return new androidx.media3.datasource.okhttp.OkHttpDataSource.Factory(ApplicationUtil.getStreamingClientInstance(serverUrl))
                 .setUserAgent(userAgent)
