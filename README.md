@@ -1,611 +1,145 @@
-# StreamFlux 📺
+# StreamBox
 
-> A professional-grade IPTV streaming application for Android with a full-featured PHP admin panel for content and user management.
+Multi-module Android **IPTV streaming client** + companion **CodeIgniter 4 PHP admin panel** + **MySQL schema**, built on top of a paid Envato/CodeCanyon "nemosofts" template. The `applicationId` is `com.mubashir.streamflux`, the original product name is "StreamFlux", and the latest commit (`72ecdc4`) is `Bug Fixes/ Rebranding` to "StreamBox".
 
-[![Android](https://img.shields.io/badge/Platform-Android-green.svg)](https://android.com)
-[![Min SDK](https://img.shields.io/badge/Min%20SDK-24-blue.svg)](https://developer.android.com)
-[![Java](https://img.shields.io/badge/Language-Java-orange.svg)](https://java.com)
-[![CodeIgniter](https://img.shields.io/badge/Backend-CodeIgniter%204-red.svg)](https://codeigniter.com)
+## 🚨 Read this before you do anything else
 
----
+The previous README sold the product without flagging a single issue with what is actually committed. The audit found six things that need to be addressed before this repo is run, redistributed, or shared further.
 
-## 📋 Table of Contents
+### 1. The Android release signing keystore is committed
 
-- [Overview](#overview)
-- [Features](#features)
-- [Screenshots](#screenshots)
-- [Architecture](#architecture)
-- [Project Structure](#project-structure)
-- [Prerequisites](#prerequisites)
-- [Android App Setup](#android-app-setup)
-- [Admin Panel Setup](#admin-panel-setup)
-- [Build & Release](#build--release)
-- [Configuration](#configuration)
-- [Key Components](#key-components)
-- [API Integration](#api-integration)
-- [Customization](#customization)
-- [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
+`Key/streamdo.jks` is the production release keystore. Anyone with this file plus the keystore/key passwords can sign and publish app updates as the original developer. The repo's own `.gitignore:146-149` literally documents this risk:
 
----
-
-## Overview
-
-StreamFlux is a complete IPTV ecosystem consisting of:
-
-1. **Android Application** - A feature-rich streaming client supporting live TV, movies, series, and radio with multiple UI themes
-2. **Admin Panel** - A CodeIgniter 4 web application for managing users, devices, content, and analytics
-3. **Database Schema** - MySQL database structure for the backend
-
-The application supports multiple IPTV protocols including **Xtream Codes API**, **M3U/M3U8 playlists**, and custom **1Stream** integration.
-
----
-
-## Features
-
-### 📺 Streaming Capabilities
-
-| Feature | Description |
-|---------|-------------|
-| **Live TV** | Stream live channels with full EPG (Electronic Program Guide) support |
-| **Video on Demand** | Browse and watch movies with detailed info (cast, plot, ratings) |
-| **TV Series** | Full series support with seasons and episodes |
-| **Radio** | Audio-only streaming for radio channels |
-| **Catch-Up TV** | Time-shifted viewing - watch previously aired content |
-| **Multi-Screen** | Watch up to 4 streams simultaneously in split-screen mode |
-
-### 🎮 Player Features
-
-| Feature | Description |
-|---------|-------------|
-| **ExoPlayer Integration** | Hardware-accelerated playback via Media3 ExoPlayer |
-| **Multiple Formats** | Support for TS, M3U8 (HLS), and direct streams |
-| **Gesture Controls** | Swipe for brightness/volume, double-tap to seek |
-| **Track Selection** | Audio track and subtitle selection |
-| **Picture-in-Picture** | Continue watching while using other apps |
-| **External Players** | MX Player, VLC, and other external player support |
-
-### 🔐 Authentication Methods
-
-| Method | Description |
-|--------|-------------|
-| **Xtream Codes** | Standard Xtream Codes API login (server/username/password) |
-| **M3U Playlist** | Direct M3U/M3U8 playlist URL support |
-| **Device Activation** | MAC-based device activation via admin panel |
-| **Token Code** | One-time token codes for quick activation |
-| **1Stream** | Custom 1Stream portal integration |
-
-### 🎨 UI Themes
-
-The app includes **9 unique themes** for different aesthetics:
-
-1. **Glossy** - Modern glossy dark theme
-2. **One UI** - Samsung-inspired clean interface
-3. **Black Panther** - Sleek all-black theme
-4. **Movie** - Cinema-inspired design
-5. **Sports** - Dynamic sports-focused layout
-6. **VUI** - Voice UI inspired design
-7. **Christmas** - Festive holiday theme
-8. **Halloween** - Spooky dark theme
-9. **Ramadan** - Islamic calendar themed
-
-### ⬇️ Offline Features
-
-- **Download Manager** - Download movies and episodes for offline viewing
-- **Encrypted Storage** - Downloaded content is encrypted for protection
-- **Resume Support** - Continue downloads after interruption
-- **Storage Management** - Choose internal or external storage
-
-### 🔒 Security & Privacy
-
-- **OpenVPN Integration** - Built-in VPN client with profile management
-- **Parental Controls** - PIN protection for sensitive content
-- **Secure Connections** - HTTPS/TLS support for all API calls
-- **Device Blocklist** - Admin can block specific devices
-
----
-
-## Architecture
-
-### Android App Architecture
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                      Presentation Layer                       │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐          │
-│  │  Activities │  │  Adapters   │  │   Dialogs   │          │
-│  └─────────────┘  └─────────────┘  └─────────────┘          │
-└─────────────────────────────────────────────────────────────┘
-                              │
-┌─────────────────────────────────────────────────────────────┐
-│                       Business Layer                          │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐          │
-│  │  Executors  │  │   Helpers   │  │   Callback  │          │
-│  └─────────────┘  └─────────────┘  └─────────────┘          │
-└─────────────────────────────────────────────────────────────┘
-                              │
-┌─────────────────────────────────────────────────────────────┐
-│                        Data Layer                             │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐          │
-│  │    Room DB  │  │ SharedPrefs │  │  Network    │          │
-│  └─────────────┘  └─────────────┘  └─────────────┘          │
-└─────────────────────────────────────────────────────────────┘
+```gitignore
+# Signing keys (RECOMMENDED to exclude for public repos!)
+# Key/
+# *.jks
 ```
 
-### Tech Stack
-
-| Component | Technology |
-|-----------|------------|
-| **Language** | Java 17 |
-| **Min SDK** | 24 (Android 7.0 Nougat) |
-| **Target SDK** | 34 (Android 14) |
-| **Video Player** | ExoPlayer (Media3) |
-| **Networking** | OkHttp 4.x, Volley |
-| **Image Loading** | Picasso (with custom optimizations) |
-| **Local Database** | Room Persistence Library |
-| **Preferences** | SharedPreferences (via SPHelper) |
-| **Background Work** | ExecutorService |
-| **Ads** | AdMob, Unity Ads, Facebook Audience Network |
-
----
-
-## Project Structure
-
-```
-StreamFlux/
-│
-├── app/                                    # Main Android application module
-│   ├── src/main/
-│   │   ├── java/nemosofts/streambox/
-│   │   │   ├── activity/                   # All 68 Activity classes
-│   │   │   │   ├── ui/                     # Theme-specific activities
-│   │   │   │   ├── ExoPlayerActivity.java  # VOD player
-│   │   │   │   ├── ExoPlayerLiveActivity.java # Live TV player
-│   │   │   │   ├── MultipleScreenActivity.java # Multi-screen player
-│   │   │   │   └── ...
-│   │   │   ├── adapter/                    # RecyclerView adapters (38 adapters)
-│   │   │   ├── callback/                   # API response callbacks
-│   │   │   ├── dialog/                     # Custom dialog implementations
-│   │   │   ├── executor/                   # Background task executors (25 executors)
-│   │   │   ├── interfaces/                 # Interface definitions (19 interfaces)
-│   │   │   ├── item/                       # Data model classes (31 models)
-│   │   │   ├── parser/                     # M3U and EPG parsers
-│   │   │   └── utils/                      # Utility classes
-│   │   │       ├── helper/                 # Database & preference helpers
-│   │   │       ├── player/                 # Custom player components
-│   │   │       └── ...
-│   │   └── res/                            # Android resources
-│   │       ├── layout/                     # XML layouts
-│   │       ├── drawable/                   # Icons and shapes
-│   │       ├── values/                     # Strings, colors, dimensions
-│   │       └── ...
-│   ├── libs/                               # AAR libraries
-│   └── build.gradle                        # App-level Gradle config
-│
-├── nemosofts-material/                     # Custom Material Design library
-│   └── src/main/java/androidx/nemosofts/  # Material components
-│
-├── nemosofts-library-mod/                  # Utility library
-│   └── src/main/java/                      # Networking, helpers
-│
-├── adminpanelcode/                         # CodeIgniter 4 Admin Panel
-│   ├── app/
-│   │   ├── Controllers/                    # 21 Controllers
-│   │   │   ├── AuthController.php          # Authentication
-│   │   │   ├── DeviceController.php        # Device management
-│   │   │   ├── ExtreamController.php       # Xtream server management
-│   │   │   ├── NotificationController.php  # Push notifications
-│   │   │   └── ...
-│   │   ├── Models/                         # 19 Database models
-│   │   ├── Views/                          # 56 View templates
-│   │   └── Libraries/                      # Custom libraries
-│   ├── public/                             # Web root
-│   │   ├── sbox_api.php                    # API endpoint
-│   │   └── assets/                         # CSS, JS, images
-│   └── .env                                # Environment configuration
-│
-├── db/                                     # Database
-│   └── mubashir_mubashir.sql              # MySQL schema
-│
-├── documentation/                          # HTML documentation
-│
-├── Key/                                    # Signing
-│   └── streamdo.jks                        # Release keystore
-│
-├── build.gradle                            # Project-level Gradle
-├── settings.gradle                         # Module settings
-└── .gitignore                              # Git ignore rules
-```
-
----
-
-## Prerequisites
-
-### For Android Development
-
-| Requirement | Version |
-|-------------|---------|
-| Android Studio | Hedgehog (2023.1.1) or newer |
-| JDK | 17 or higher |
-| Gradle | 8.2+ (bundled with Android Studio) |
-| Android SDK | API 24-34 |
-
-### For Admin Panel
-
-| Requirement | Version |
-|-------------|---------|
-| PHP | 8.1 or higher |
-| MySQL | 5.7+ or MariaDB 10.3+ |
-| Apache/Nginx | With mod_rewrite enabled |
-| Composer | 2.x (optional, for dependencies) |
-
----
-
-## Android App Setup
-
-### 1. Clone the Repository
+…and then leaves both rules commented out. Recovery:
 
 ```bash
-git clone https://github.com/shayann07/StreamBox.git
-cd StreamBox
+# 1. Generate a new release keystore locally and keep it OFF git.
+# 2. Stop tracking the old one and harden .gitignore:
+git rm --cached Key/streamdo.jks
+# uncomment Key/ and *.jks in .gitignore:146-149
+git commit -m "Stop tracking signing keystore"
+# 3. Purge from history:
+git filter-repo --path Key/streamdo.jks --invert-paths
+# 4. If a Play Store upload key was derived from this keystore, contact Play
+#    Console support to rotate the upload key.
 ```
 
-### 2. Open in Android Studio
+### 2. Paid CodeCanyon template with licence verification deliberately disabled
 
-1. Launch Android Studio
-2. Select **File → Open**
-3. Navigate to the cloned directory and select it
-4. Wait for Gradle sync to complete
+The `nemosofts-material/` and `nemosofts-library-mod/` modules are derived from a paid Envato/CodeCanyon "nemosofts" Android template. The `app/` source contains explicit bypass code:
 
-### 3. Configure Firebase (Optional)
+| File | What it does |
+| --- | --- |
+| `LauncherActivity.java:29-30` | `// import androidx.nemosofts.LauncherListener; // Bypassed - license verification disabled` |
+| `BaseActivity.java` | Intercepts `startActivity(...)` and blocks any intent whose host is `nemosofts.com` |
+| `MyApplication.java` | Registers a `DialogBlockerCallback` to suppress the verification dialog on every Activity |
+| `LoadAbout.java` | `nemosofts.setVerificationCode(...)` call commented out |
+| `db/mubashir_mubashir.sql` | `tbl_settings.envato_api_key = 'bypass_057590fd7c33e6c74d5b80715797e746'` |
 
-If you want push notifications:
+Redistributing a paid Envato item without a legitimate Regular/Extended licence is a copyright/EULA violation. Either purchase a real licence and re-enable verification, rewrite the UI/theme system without the paid template, or take this repo private.
 
-1. Create a Firebase project at [Firebase Console](https://console.firebase.google.com)
-2. Add an Android app with package name `nemosofts.streambox`
-3. Download `google-services.json`
-4. Replace `app/google-services.json` with your file
+### 3. `app/google-services.json` is committed
 
-### 4. Configure API Endpoint
+Firebase project `streamflux-5f126`, Android API key `REDACTED_API_KEY`, package `com.mubashir.streamflux`. Android API keys aren't strictly secret (Google restricts them by package + signing certificate), but this should still be replaced with **your own** Firebase project before any deployment, and API-key restrictions + Firebase App Check should be applied. `.gitignore:32` has `# google-services.json` commented out — fix that too.
 
-Edit `app/src/main/java/nemosofts/streambox/callback/Callback.java`:
+### 4. `db/mubashir_mubashir.sql` is a real production-ish dump with live credentials
 
-```java
-public class Callback {
-    // Set your admin panel API URL
-    public static String API_URL = "https://your-domain.com/sbox_api.php";
-    
-    // Other configuration...
-}
+This 27 KB MySQL dump (generated 2026-02-01 from `192.168.0.100:3306`) is **not** seed data — it contains:
+
+- `tbl_activation_code` row with **real third-party IPTV provider credentials**: `username = REDACTED_USER`, `password = REDACTED_PASS`, `server = http://zavqeno.com`, activation code `5949638966`. **Notify the provider and rotate the password — these have been public.**
+- `tbl_admin` row with bcrypt hash for the `admin` user (the previous README documented the default password as `admin123` — change it).
+- `tbl_settings` containing the **OneSignal REST API key `REDACTED_ONESIGNAL_KEY`** (a real secret — anyone with it can broadcast push notifications to every device that has installed this app). **Rotate immediately.**
+
+Replace the file with a schema-only dump (`mysqldump --no-data`) and history-purge.
+
+### 5. Hardcoded encryption key, IV, and plaintext-HTTP backend in `gradle.properties:36-48`
+
+```
+BASE_URL="http://mubashir.co/streambox/"
+API_NAME="NEMOSOFTS_APP"
+ENC_KEY="onlinenstencrypt"
+IV="nstencryptiv1234"
 ```
 
-### 5. Build and Run
+`Callback.java:20` uses `BuildConfig.BASE_URL + "api"` for every server call, and `AndroidManifest.xml:74` sets `android:usesCleartextTraffic="true"` to permit the HTTP. Move these into a `secrets.properties` ignored by git or into CI environment variables, switch the backend to HTTPS, drop `usesCleartextTraffic`, and rotate `ENC_KEY` + `IV`.
 
-1. Connect an Android device or start an emulator
-2. Click **Run → Run 'app'** or press `Shift+F10`
-3. Select your target device
+### 6. Default admin password documented
 
----
+The previous README documented the admin panel default login as `admin` / `admin123`. If the deployed panel still uses this, change it.
 
-## Admin Panel Setup
+## What the codebase actually contains
 
-### 1. Database Setup
+- **`app/`** — main Android module, ~38k LOC Java. Entry: `LauncherActivity` → splash → calls `BuildConfig.BASE_URL + "api"` to fetch settings, ad units, theme config → routes to one of `SignInActivity`, `SignInDeviceActivity`, `SignInCodeActivity`, `TrialAccountActivity`. Five auth flows: **Xtream Codes** (server / username / password), **M3U/M3U8 playlist URL**, **device activation** (MAC + admin-generated code), **token code**, **1Stream portal**. Content categories: Live TV (with EPG + catch-up), Movies, Series, Radio, plus offline encrypted downloads. Player is **ExoPlayer Media3 1.3.0** with TS / HLS / direct streams, gesture controls, audio/subtitle tracks, PiP, and external player handoff (MX, VLC). 9 selectable themes (Glossy, One UI, Black Panther, Movie, Sports, VUI, Christmas, Halloween, Ramadan).
+- **`adminpanelcode/`** — ~17.8k LOC PHP. CodeIgniter 4 admin panel — 21+ controllers, 19 models, 56 views, REST endpoint at `public/sbox_api.php`. CodeIgniter itself is MIT-licensed; the bespoke admin code is part of the paid template.
+- **`nemosofts-material/`** — ~16.7k LOC custom Material library lifted from the Nemosofts template (custom dialogs, multi-view player layout, theme switcher).
+- **`nemosofts-library-mod/`** — empty placeholder module.
+- **`db/mubashir_mubashir.sql`** — see security warning above.
+- **`Key/streamdo.jks`** — see security warning above.
+- **`documentation/`** — auto-generated HTML docs from "Advanced Document Creator" with `nemosofts.com` watermark; bloat — replace with markdown.
+- **Helper scripts at repo root** (`build_fix.ps1`, `fix_dialog_leaks.py`, `list_aar_classes.ps1`, `verify_jar.ps1`) — all Windows-developer-specific; `fix_dialog_leaks.py:73` and `list_aar_classes.ps1` hardcode the developer's `d:/Work/...` path. Drop them.
+
+## Tech stack
+
+- **Languages:** Java 17 (Android), PHP (CodeIgniter 4 admin), MySQL.
+- **Android:** AGP 8.2+, `compileSdk 36`, `minSdk 23`, `targetSdk 36`, `viewBinding` enabled, no Kotlin.
+- **Player:** `androidx.media3:media3-exoplayer 1.3.0` (modern, not the legacy `com.google.android.exoplayer2`).
+- **Networking:** Volley + OkHttp 4.12.0; HTTP allowed via `usesCleartextTraffic="true"`.
+- **Image loading:** Picasso 2.8.
+- **Persistence:** SharedPreferences via `SPHelper` (no Room).
+- **Push:** OneSignal 5.1.6.
+- **Ads:** Google Mobile Ads 22.6.0 (banner / interstitial / reward — unit IDs delivered dynamically by the admin panel).
+- **Cast:** Google Cast Framework 21.4.0.
+- **Firebase BOM 32.7.0:** Analytics + In-App Messaging only (no Auth, no Firestore, no FCM).
+- **YouTube playback:** `youtube-android-player-api` 12.1.0.
+
+## Permissions of note (`app/src/main/AndroidManifest.xml`)
+
+Standard streaming + media + foreground-service + Cast + AdMob + OneSignal permissions. Notable:
+
+- `android:usesCleartextTraffic="true"` (line 74) — allows HTTP. Drop after backend migrates to HTTPS.
+- `RECEIVE_BOOT_COMPLETED` (line 41) — used to restore the app's notification/cast state on boot.
+
+No `READ_PHONE_STATE` (no IMEI grab), no AccessibilityService, no DeviceAdmin, no `SYSTEM_ALERT_WINDOW`.
+
+## Setup / run
+
+> Do **not** ship anything built from this tree as-is. Resolve every item in the security section first.
+
+### Android
 
 ```bash
-# Create database
-mysql -u root -p -e "CREATE DATABASE streamflux CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
-
-# Import schema
-mysql -u root -p streamflux < db/mubashir_mubashir.sql
+# 1. Generate your own keystore and replace Key/streamdo.jks.
+# 2. Replace app/google-services.json with your own Firebase project.
+# 3. Replace BASE_URL/ENC_KEY/IV in gradle.properties with your own values
+#    (and move them into a secrets.properties that's in .gitignore).
+# 4. Switch BASE_URL to https:// and drop android:usesCleartextTraffic.
+./gradlew :app:assembleDebug
 ```
 
-### 2. Configure Environment
+Open in Android Studio Hedgehog or newer for AGP 8.2.
 
-Edit `adminpanelcode/.env`:
-
-```ini
-#--------------------------------------------------------------------
-# DATABASE
-#--------------------------------------------------------------------
-database.default.hostname = localhost
-database.default.database = streamflux
-database.default.username = your_db_user
-database.default.password = your_db_password
-database.default.DBDriver = MySQLi
-
-#--------------------------------------------------------------------
-# APP
-#--------------------------------------------------------------------
-app.baseURL = 'https://your-domain.com/'
-```
-
-### 3. Web Server Configuration
-
-#### Apache (.htaccess is included)
-
-Ensure `mod_rewrite` is enabled:
-```bash
-sudo a2enmod rewrite
-sudo systemctl restart apache2
-```
-
-#### Nginx
-
-```nginx
-location / {
-    try_files $uri $uri/ /index.php$is_args$args;
-}
-
-location ~ \.php$ {
-    fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
-    fastcgi_index index.php;
-    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-    include fastcgi_params;
-}
-```
-
-### 4. Set Permissions
+### Admin panel
 
 ```bash
-chmod -R 755 adminpanelcode/
-chmod -R 777 adminpanelcode/writable/
+# 1. Sanitize db/mubashir_mubashir.sql (schema only) before importing.
+# 2. Drop adminpanelcode/ into a PHP 8 + MySQL host.
+# 3. Configure adminpanelcode/app/Config/Database.php with your DB creds (NOT in git).
+# 4. Force a password reset for the seed `admin` account.
+# 5. Point gradle.properties.BASE_URL at the deployed admin URL.
 ```
 
-### 5. Access Admin Panel
+## Status
 
-Navigate to `https://your-domain.com/` and log in with default credentials:
-- **Username**: `admin`
-- **Password**: `admin123`
+Working tree clean on `main`. 4 commits: `3b00da0` Initial commit - StreamFlux IPTV app with admin panel, `a4c41b1` Add README.md, `b331046` Add comprehensive README documentation, `72ecdc4` Bug Fixes/ Rebranding. No GitPulse pollution.
 
-> ⚠️ **Change the default password immediately after first login!**
-
----
-
-## Build & Release
-
-### Debug Build
-
-```bash
-./gradlew assembleDebug
-```
-
-Output: `app/build/outputs/apk/debug/app-debug.apk`
-
-### Release Build
-
-1. **Configure signing** in `app/build.gradle`:
-
-```gradle
-android {
-    signingConfigs {
-        release {
-            storeFile file('../Key/streamdo.jks')
-            storePassword 'your_store_password'
-            keyAlias 'your_key_alias'
-            keyPassword 'your_key_password'
-        }
-    }
-    
-    buildTypes {
-        release {
-            signingConfig signingConfigs.release
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-}
-```
-
-2. **Build release APK**:
-
-```bash
-./gradlew assembleRelease
-```
-
-Output: `app/build/outputs/apk/release/app-release.apk`
-
-### Generate Signed Bundle (for Play Store)
-
-```bash
-./gradlew bundleRelease
-```
-
-Output: `app/build/outputs/bundle/release/app-release.aab`
-
----
-
-## Configuration
-
-### App Configuration (`Callback.java`)
-
-```java
-public class Callback {
-    // API Configuration
-    public static String API_URL = "https://your-api.com/sbox_api.php";
-    
-    // Feature Flags
-    public static final boolean IS_VPN_ENABLED = true;
-    public static final boolean IS_DOWNLOAD_ENABLED = true;
-    public static final boolean IS_MULTI_SCREEN_ENABLED = true;
-    
-    // Ad Configuration
-    public static final String ADMOB_BANNER_ID = "ca-app-pub-xxx";
-    public static final String ADMOB_INTERSTITIAL_ID = "ca-app-pub-xxx";
-    
-    // Login Types
-    public static final String TAG_LOGIN_ONE_UI = "streaming";
-    public static final String TAG_LOGIN_PLAYLIST = "playlist";
-    public static final String TAG_LOGIN_SINGLE_STREAM = "single";
-}
-```
-
-### Player Configuration (`SPHelper.java`)
-
-```java
-// Default player settings (can be changed by user in Settings)
-spHelper.setPlayerBuffer(2000);        // Buffer size in ms
-spHelper.setLiveFormat(0);             // 0 = m3u8, 1 = ts
-spHelper.setMovieFormat(0);            // 0 = m3u8, 1 = ts
-spHelper.setHardwareDecoder(true);     // Hardware acceleration
-```
-
----
-
-## Key Components
-
-### Activities
-
-| Activity | Purpose |
-|----------|---------|
-| `LauncherActivity` | Splash screen and initialization |
-| `SignInActivity` | Xtream Codes login |
-| `PlaylistActivity` | M3U playlist management |
-| `LiveTvActivity` | Live TV channel browser |
-| `MovieActivity` | Movie catalog |
-| `SeriesActivity` | TV series catalog |
-| `ExoPlayerLiveActivity` | Live stream playback |
-| `ExoPlayerActivity` | VOD playback |
-| `MultipleScreenActivity` | Multi-screen viewing |
-| `SettingActivity` | App settings |
-
-### Executors (Background Tasks)
-
-| Executor | Purpose |
-|----------|---------|
-| `LoadLogin` | Authenticate with Xtream API |
-| `GetCategory` | Fetch category lists |
-| `GetLive` | Fetch live channels |
-| `GetMovies` | Fetch movies |
-| `GetSeries` | Fetch TV series |
-| `LoadEpg` | Parse EPG data |
-| `GetChannelPlaylist` | Parse M3U playlists |
-
-### Database Helpers
-
-| Helper | Purpose |
-|--------|---------|
-| `DBHelper` | SQLite database operations |
-| `SPHelper` | SharedPreferences wrapper |
-| `JSHelper` | JSON parsing utilities |
-
----
-
-## API Integration
-
-### Xtream Codes API
-
-The app integrates with standard Xtream Codes API:
-
-```
-GET /player_api.php?username={user}&password={pass}
-GET /player_api.php?username={user}&password={pass}&action=get_live_categories
-GET /player_api.php?username={user}&password={pass}&action=get_live_streams
-GET /player_api.php?username={user}&password={pass}&action=get_vod_categories
-GET /player_api.php?username={user}&password={pass}&action=get_vod_streams
-GET /player_api.php?username={user}&password={pass}&action=get_series_categories
-GET /player_api.php?username={user}&password={pass}&action=get_series
-```
-
-### Stream URLs
-
-```
-Live:  {server}/live/{user}/{pass}/{stream_id}.ts
-VOD:   {server}/movie/{user}/{pass}/{stream_id}.mkv
-```
-
-### Admin Panel API
-
-The admin panel exposes a REST API at `/sbox_api.php`:
-
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `?method=app_details` | GET | Get app configuration |
-| `?method=login` | POST | User authentication |
-| `?method=report` | POST | Submit error reports |
-
----
-
-## Customization
-
-### Changing App Branding
-
-1. **App Name**: Edit `app/src/main/res/values/strings.xml`
-   ```xml
-   <string name="app_name">Your App Name</string>
-   ```
-
-2. **Package Name**: Refactor package in Android Studio
-   - Right-click `nemosofts.streambox` → Refactor → Rename
-
-3. **App Icon**: Replace files in `app/src/main/res/mipmap-*`
-
-4. **Splash Screen**: Modify `activity_launcher.xml` and `LauncherActivity.java`
-
-### Adding New Theme
-
-1. Create new Activity extending base theme activity
-2. Add corresponding layout XML
-3. Register in `AndroidManifest.xml`
-4. Add to theme selection in `SettingUIActivity`
-
-### Custom Player UI
-
-Modify `custom_controls_live.xml` or create new controller layouts following ExoPlayer's `StyledPlayerView` customization guide.
-
----
-
-## Troubleshooting
-
-### Common Issues
-
-| Issue | Solution |
-|-------|----------|
-| **404 errors on streams** | Check stream URL construction in `getChannelUrl()`, ensure `.ts` or `.m3u8` extension is included |
-| **Black screen in player** | Enable/disable hardware decoding in settings |
-| **Images not loading** | Check network connectivity and Picasso cache |
-| **Login fails** | Verify API endpoint URL and server connectivity |
-| **Multi-screen not working** | Ensure OkHttpDataSource is configured with proper headers |
-
-### Debug Logging
-
-Enable verbose logging in `ApplicationUtil.java`:
-
-```java
-public static void log(String tag, String message) {
-    if (BuildConfig.DEBUG) {
-        Log.d(tag, message);
-    }
-}
-```
-
-### ProGuard Issues
-
-If release build crashes, check `proguard-rules.pro` for missing keep rules.
-
----
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
----
+Remote: `https://github.com/shayann07/StreamBox.git`.
 
 ## License
 
-This is a private repository. All rights reserved.
-
----
-
-## Contact
-
-**shayann07** - [GitHub Profile](https://github.com/shayann07)
-
----
-
-<p align="center">
-  <b>Built with ❤️ for the streaming community</b>
-</p>
+The previous README declared "All rights reserved" while redistributing a paid Nemosofts CodeCanyon template with its licence-verification bypassed — those two claims are incoherent. Resolve the Envato licence situation before adding any open-source `LICENSE` file. Until then, treat as **all rights reserved AND third-party-licence-disputed**.
