@@ -153,3 +153,33 @@ aar_temp/
 
 # Documentation (if you want to keep repo lightweight)
 # documentation/
+
+# Secrets & Keys
+Key/
+*.jks
+*.keystore
+*.p12
+google-services.json
+app/google-services.json
+.env
+adminpanelcode/.env
+secrets.properties
+
+# Databases
+*.sql
+*.dat
+*.sqlite
+*.db
+
+# Build files
+build/
+app/build/
+.gradle/
+.idea/
+captures/
+
+# Scripts
+build_fix.ps1
+fix_dialog_leaks.py
+list_aar_classes.ps1
+verify_jar.ps1

@@ -1,0 +1,22 @@
+﻿{
+  "project_info": {
+    "project_number": "123456789012",
+    "project_id": "your-project-id"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123456789012:android:your_app_id",
+        "android_client_info": {
+          "package_name": "com.nemosofts.streambox"
+        }
+      },
+      "api_key": [
+        {
+          "current_key": "YOUR_FIREBASE_API_KEY_HERE"
+        }
+      ]
+    }
+  ],
+  "configuration_version": "1"
+}
