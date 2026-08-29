@@ -1,8 +1,20 @@
-﻿# StreamBox
+# StreamBox
 
-StreamBox is a comprehensive multi-module Android IPTV Streaming Application and CodeIgniter 4 Web Admin Panel.
+[![Platform](https://img.shields.io/badge/Platform-Android-3DDC84?logo=android&logoColor=white)]()
+[![Language](https://img.shields.io/badge/Language-Java-ED8B00?logo=openjdk&logoColor=white)]()
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-## Key Features
+> Android IPTV streaming client paired with a PHP admin panel â€” Live TV, Movies, Series, Radio, offline downloads, and a back-office for managing the catalogue.
+
+---
+
+## 📖 Overview
+
+Android IPTV streaming client paired with a PHP admin panel â€” Live TV, Movies, Series, Radio, offline downloads, and a back-office for managing the catalogue.
+
+---
+
+## ✨ Key Features
 
 *   **Playback Engine:** Powered by Media3 ExoPlayer (supports HLS, DASH, RTSP, SmoothStreaming).
 *   **Dynamic UI Themes:** 9 unique UI themes including Glossy, OneUI, VUI, Movie, and Ramadan.
@@ -11,13 +23,20 @@ StreamBox is a comprehensive multi-module Android IPTV Streaming Application and
 *   **Push Notifications:** OneSignal integration for real-time updates.
 *   **Admin Backend:** CodeIgniter 4 PHP Admin Panel backend for seamless content and user management.
 
-## Architecture & Modules
+---
 
-*   :app - Android Client
-*   :nemosofts-material - Custom Material widget & theme engine
-*   dminpanelcode/ - CodeIgniter 4 REST API & Web Admin
+## 🛠️ Technology Stack
 
-## Setup & Installation Guide
+| Component / Layer | Technology |
+|---|---|
+| **Platform** | Android |
+| **Primary Language** | Java |
+| **Architecture** | MVVM / Clean Architecture |
+| **License** | Open Source (MIT) |
+
+---
+
+## 🚀 Getting Started
 
 1.  **Android Studio:**
     *   Open the project in Android Studio.
@@ -27,6 +46,8 @@ StreamBox is a comprehensive multi-module Android IPTV Streaming Application and
     *   Import your database schema (create one based on .env.example).
     *   Configure the database connection in dminpanelcode/.env (using .env.example as a reference).
 
-## License
+---
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE) — Copyright (c) 2026 [shayann07](https://github.com/shayann07).
