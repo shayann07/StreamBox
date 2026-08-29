@@ -183,3 +183,9 @@ build_fix.ps1
 fix_dialog_leaks.py
 list_aar_classes.ps1
 verify_jar.ps1
+
+# Database dumps - never commit
+*.sql
+*.db
+*.sqlite
+*.sqlite3
